@@ -1,0 +1,42 @@
+{% extends 'cards/base.html' %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-body">
+        <h2 class="card-title mb-4">📊 Результаты игры</h2>
+        <div class="alert alert-{{ result_style }} text-center">
+            <h4>Правильных ответов: {{ correct }} из {{ total }}</h4>
+            <h2 class="display-4">{{ percentage }}%</h2>
+        </div>
+        
+        <div class="list-group">
+            {% for result in results %}
+            <div class="list-group-item {% if result.is_correct %}list-group-item-success{% else %}list-group-item-danger{% endif %}">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <strong>❓ {{ result.question }}</strong><br>
+                        Ваш ответ: {{ result.answer|default:"Нет ответа" }}
+                    </div>
+                    <div class="text-end">
+                        {% if result.is_correct %}
+                        ✅ Правильно
+                        {% else %}
+                        ❌ Правильный ответ: {{ result.correct_answer }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mt-4 text-center">
+            <a href="{% url 'categories' %}" class="btn btn-primary">
+                🎮 Играть снова
+            </a>
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                🏠 На главную
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'cards/base.html' %}
+
+{% block content %}
+<div class="card shadow-lg">
+    <div class="card-body text-center">
+        <h1 class="card-title display-4 mb-4">🎓 EduMatch</h1>
+        <p class="lead mb-4">Изучайте новое через увлекательные игры с карточками</p>
+        <div class="d-grid gap-3">
+            <a href="{% url 'categories' %}" class="btn btn-primary btn-lg">
+                🚀 Начать игру
+            </a>
+            <div class="row g-2">
+                <div class="col">
+                    <a href="{% url 'add_card' %}" class="btn btn-outline-success w-100">
+                        ✏️ Добавить карточку
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'add_category' %}" class="btn btn-outline-info w-100">
+                        📚 Новая категория
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

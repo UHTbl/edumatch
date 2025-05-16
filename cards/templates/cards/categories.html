@@ -1,0 +1,23 @@
+{% extends 'cards/base.html' %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-body">
+        <h2 class="card-title mb-4">📂 Выберите категорию</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for category in categories %}
+            <div class="col">
+                <a href="{% url 'game' category.id %}" class="card h-100 text-decoration-none">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">{{ category.name }}</h3>
+                        <small class="text-muted">
+                            {{ category.card_set.count }} карточек
+                        </small>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

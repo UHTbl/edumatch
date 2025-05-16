@@ -1,0 +1,34 @@
+{% extends 'cards/base.html' %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-body">
+        <h2 class="card-title mb-4">🎮 Играем: {{ category.name }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row g-4">
+                {% for card in cards %}
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">❓ {{ card.left_text }}</h4>
+                            <select name="card_{{ card.id }}" class="form-select">
+                                <option value="">Выберите ответ</option>
+                                {% for r_card in random_cards %}
+                                <option value="{{ r_card.id }}">{{ r_card.right_text }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    ✅ Проверить ответы
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
