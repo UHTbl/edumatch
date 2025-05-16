@@ -11,4 +11,3 @@ class CategoryAdmin(admin.ModelAdmin):
 class CardAdmin(admin.ModelAdmin):
     list_display = ("left_text", "right_text", "category")  # Поля для отображения
     list_filter = ("category",)  # Фильтры справа
-    

@@ -12,10 +12,10 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">❓ {{ card.left_text }}</h4>
-                            <select name="card_{{ card.id }}" class="form-select">
+                            <select name="card_{{ card.id }}" class="form-select" style="max-height: 150px; overflow-y: auto;">
                                 <option value="">Выберите ответ</option>
-                                {% for r_card in random_cards %}
-                                <option value="{{ r_card.id }}">{{ r_card.right_text }}</option>
+                                {% for option in card.options %}
+                                <option value="{{ option.id }}">{{ option.right_text }}</option>
                                 {% endfor %}
                             </select>
                         </div>
