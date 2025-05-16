@@ -1,24 +1,32 @@
 {% extends 'cards/base.html' %}
 
 {% block content %}
-<div class="card shadow">
-    <div class="card-body">
-        <h2 class="card-title mb-4">📚 Создать новую категорию</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label class="form-label">Название категории</label>
-                {{ form.name }}
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">
-                    💾 Сохранить
-                </button>
-                <a href="{% url 'index' %}" class="btn btn-outline-secondary">
-                    Отмена
-                </a>
-            </div>
-        </form>
+<div class="col-lg-6 mx-auto">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title mb-4">
+                <i class="fas fa-folder-plus me-2"></i>Новая категория
+            </h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label class="form-label">Название категории</label>
+                    <input type="text" 
+                           name="name" 
+                           class="form-control form-control-lg"
+                           placeholder="Пример: Английские глаголы"
+                           required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save me-2"></i>Создать
+                    </button>
+                    <a href="{% url 'categories' %}" class="btn btn-outline-secondary">
+                        Отмена
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

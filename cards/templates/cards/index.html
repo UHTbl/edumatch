@@ -1,26 +1,32 @@
 {% extends 'cards/base.html' %}
 
 {% block content %}
-<div class="card shadow-lg">
-    <div class="card-body text-center">
-        <h1 class="card-title display-4 mb-4">🎓 EduMatch</h1>
-        <p class="lead mb-4">Изучайте новое через увлекательные игры с карточками</p>
-        <div class="d-grid gap-3">
-            <a href="{% url 'categories' %}" class="btn btn-primary btn-lg">
-                🚀 Начать игру
-            </a>
-            <div class="row g-2">
-                <div class="col">
-                    <a href="{% url 'add_card' %}" class="btn btn-outline-success w-100">
-                        ✏️ Добавить карточку
+<div class="col-lg-8 mx-auto">
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <h1 class="display-4 mb-4">🎓 Добро пожаловать в EduMatch!</h1>
+            <p class="lead text-muted mb-5">
+                Изучайте новые темы через увлекательные игры с карточками.<br>
+                Создавайте свои наборы или выбирайте из существующих категорий.
+            </p>
+            
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center flex-wrap">
+                <!-- Основные действия -->
+                <a href="{% url 'categories' %}" class="btn btn-primary btn-lg px-4">
+                    <i class="fas fa-play me-2"></i>Начать игру
+                </a>
+                
+                <!-- Группа кнопок создания -->
+                <div class="btn-group-vertical btn-group-lg" role="group">
+                    <a href="{% url 'add_card' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-plus me-2"></i>Создать карточку
                     </a>
-                </div>
-                <div class="col">
-                    <a href="{% url 'add_category' %}" class="btn btn-outline-info w-100">
-                        📚 Новая категория
+                    <a href="{% url 'add_category' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-folder-plus me-2"></i>Создать категорию
                     </a>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

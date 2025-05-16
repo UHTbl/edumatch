@@ -1,23 +1,35 @@
 {% extends 'cards/base.html' %}
 
 {% block content %}
-<div class="card shadow">
-    <div class="card-body">
-        <h2 class="card-title mb-4">📂 Выберите категорию</h2>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            {% for category in categories %}
-            <div class="col">
-                <a href="{% url 'game' category.id %}" class="card h-100 text-decoration-none">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">{{ category.name }}</h3>
-                        <small class="text-muted">
-                            {{ category.card_set.count }} карточек
-                        </small>
-                    </div>
-                </a>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for category in categories %}
+    <div class="col">
+        <div class="card h-100 option-card">
+            <div class="card-body text-center py-4">
+                <h3 class="card-title mb-3">
+                    <i class="fas fa-folder-open me-2 text-primary"></i>
+                    {{ category.name }}
+                </h3>
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <span class="badge bg-primary rounded-pill">
+                        {{ category.card_set.count }} карточек
+                    </span>
+                </div>
+                <a href="{% url 'game' category.id %}" class="stretched-link"></a>
             </div>
-            {% endfor %}
         </div>
     </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <h4 class="text-muted mb-4">Пока нет ни одной категории</h4>
+                <a href="{% url 'add_category' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus-circle me-2"></i>Создать первую категорию
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

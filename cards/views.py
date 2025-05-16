@@ -32,35 +32,33 @@ def categories(request):
 
 def game(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    all_cards = list(Card.objects.filter(category=category))
     
-    # Обработка количества карточек
-    try:
-        num_cards = min(len(all_cards), max(3, int(request.GET.get('num_cards', 5))))
-    except:
+    # Получаем или генерируем выбранные карточки
+    if 'selected_cards' not in request.session or request.method == 'GET':
+        all_cards = list(Card.objects.filter(category=category))
         num_cards = min(len(all_cards), 5)
-    
-    if len(all_cards) >= num_cards:
-        selected_cards = random.sample(all_cards, num_cards)
+        selected_cards = random.sample(all_cards, num_cards) if len(all_cards) >= 5 else all_cards
+        request.session['selected_cards'] = [c.id for c in selected_cards]
     else:
-        selected_cards = all_cards
-    
-    # Генерация вариантов ответов для каждой карточки
+        selected_cards = Card.objects.filter(id__in=request.session['selected_cards'])
+
+    # Генерация вариантов ответов
     for card in selected_cards:
-        other_cards = [c for c in all_cards if c != card]
+        other_cards = [c for c in selected_cards if c != card]
         wrong_answers = random.sample(other_cards, min(3, len(other_cards)))
         options = wrong_answers + [card]
         random.shuffle(options)
         card.options = options
-    
+
+    # Обработка ответов
     if request.method == 'POST':
         correct = 0
         results = []
         
         for card in selected_cards:
             answer_id = request.POST.get(f'card_{card.id}')
-            answer = next((c for c in all_cards if str(c.id) == answer_id), None)
-            is_correct = (answer.right_text == card.right_text) if answer else False
+            answer = next((c for c in selected_cards if str(c.id) == answer_id), None)
+            is_correct = (answer and answer.id == card.id)
             
             if is_correct:
                 correct += 1
@@ -72,6 +70,7 @@ def game(request, category_id):
                 'is_correct': is_correct
             })
         
+        request.session.pop('selected_cards', None)
         return render(request, 'cards/results.html', {
             'results': results,
             'correct': correct,

@@ -1,40 +1,50 @@
 {% extends 'cards/base.html' %}
 
 {% block content %}
-<div class="card shadow">
+<div class="card">
     <div class="card-body">
-        <h2 class="card-title mb-4">📊 Результаты игры</h2>
-        <div class="alert alert-{{ result_style }} text-center">
-            <h4>Правильных ответов: {{ correct }} из {{ total }}</h4>
-            <h2 class="display-4">{{ percentage }}%</h2>
+        <div class="text-center mb-5">
+            <h2 class="card-title">
+                <i class="fas fa-chart-bar me-2"></i>Результаты
+            </h2>
+            <div class="progress mb-4" style="height: 25px">
+                <div class="progress-bar bg-success" 
+                     role="progressbar" 
+                     style="width: {{ percentage }}%">
+                    {{ correct }}/{{ total }}
+                </div>
+            </div>
+            <h3 class="text-{{ result_style }}">
+                <i class="fas fa-{{ result_icon }} me-2"></i>{{ percentage }}%
+            </h3>
         </div>
-        
+
         <div class="list-group">
             {% for result in results %}
             <div class="list-group-item {% if result.is_correct %}list-group-item-success{% else %}list-group-item-danger{% endif %}">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>❓ {{ result.question }}</strong><br>
-                        Ваш ответ: {{ result.answer|default:"Нет ответа" }}
+                        <h5 class="mb-1">{{ result.question }}</h5>
+                        <small>Ваш ответ: {{ result.answer }}</small>
                     </div>
-                    <div class="text-end">
+                    <div>
                         {% if result.is_correct %}
-                        ✅ Правильно
+                        <i class="fas fa-check-circle fa-2x text-success"></i>
                         {% else %}
-                        ❌ Правильный ответ: {{ result.correct_answer }}
+                        <i class="fas fa-times-circle fa-2x text-danger"></i>
+                        <div class="text-muted small mt-1">
+                            Правильно: {{ result.correct_answer }}
+                        </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        
-        <div class="mt-4 text-center">
-            <a href="{% url 'categories' %}" class="btn btn-primary">
-                🎮 Играть снова
-            </a>
-            <a href="{% url 'index' %}" class="btn btn-outline-secondary">
-                🏠 На главную
+
+        <div class="d-grid gap-2 mt-5">
+            <a href="{% url 'categories' %}" class="btn btn-outline-primary">
+                <i class="fas fa-redo me-2"></i>Играть снова
             </a>
         </div>
     </div>
