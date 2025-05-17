@@ -11,8 +11,9 @@
                     {{ category.name }}
                 </h3>
                 <div class="d-flex justify-content-center align-items-center mb-3">
+                    <!-- Используем аннотированное поле -->
                     <span class="badge bg-primary rounded-pill">
-                        {{ category.card_set.count }} карточек
+                        {{ category.total_cards }} карточек
                     </span>
                 </div>
                 <a href="{% url 'game' category.id %}" class="stretched-link"></a>

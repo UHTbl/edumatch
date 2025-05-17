@@ -4,29 +4,35 @@
 <div class="col-lg-8 mx-auto">
     <div class="card">
         <div class="card-body text-center py-5">
+            <!-- Основной заголовок -->
             <h1 class="display-4 mb-4">🎓 Добро пожаловать в EduMatch!</h1>
+            
+            <!-- Описание сервиса -->
             <p class="lead text-muted mb-5">
                 Изучайте новые темы через увлекательные игры с карточками.<br>
                 Создавайте свои наборы или выбирайте из существующих категорий.
             </p>
             
+            <!-- Блок кнопок -->
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center flex-wrap">
-                <!-- Основные действия -->
-                <a href="{% url 'categories' %}" class="btn btn-primary btn-lg px-4">
+                <!-- Основная кнопка -->
+                <a href="{% url 'categories' %}" 
+                   class="btn btn-primary btn-lg px-4">
                     <i class="fas fa-play me-2"></i>Начать игру
                 </a>
                 
                 <!-- Группа кнопок создания -->
                 <div class="btn-group-vertical btn-group-lg" role="group">
-                    <a href="{% url 'add_card' %}" class="btn btn-outline-secondary">
+                    <a href="{% url 'add_card' %}" 
+                       class="btn btn-outline-secondary">
                         <i class="fas fa-plus me-2"></i>Создать карточку
                     </a>
-                    <a href="{% url 'add_category' %}" class="btn btn-outline-secondary">
+                    <a href="{% url 'add_category' %}" 
+                       class="btn btn-outline-secondary">
                         <i class="fas fa-folder-plus me-2"></i>Создать категорию
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

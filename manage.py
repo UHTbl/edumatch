@@ -5,7 +5,7 @@ import sys
 
 
 def main():
-    """Run administrative tasks."""
+    """Основная функция для выполнения административных задач."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'edumatch.settings')
     try:
         from django.core.management import execute_from_command_line

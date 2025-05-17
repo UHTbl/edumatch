@@ -1,13 +1,15 @@
 from django.contrib import admin
-from .models import Category, Card  # Импортируйте ваши модели
+from .models import Category, Card
 
-# Регистрация модели Category
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name",)  # Поля для отображения в списке
+    """Административный интерфейс для модели Category"""
+    list_display = ("name",)  # Отображаемое поле в списке
 
-# Регистрация модели Card
+
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
+    """Административный интерфейс для модели Card"""
     list_display = ("left_text", "right_text", "category")  # Поля для отображения
-    list_filter = ("category",)  # Фильтры справа
+    list_filter = ("category",)  # Фильтрация по категориям

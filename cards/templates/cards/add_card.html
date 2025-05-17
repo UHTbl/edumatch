@@ -3,12 +3,19 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
+        <!-- Заголовок формы -->
         <h2 class="card-title">Добавить карточку</h2>
+        
+        <!-- Форма создания карточки -->
         <form method="post">
             {% csrf_token %}
+            
+            <!-- Поля формы -->
             <div class="mb-3">
                 {{ form.as_p }}
             </div>
+            
+            <!-- Кнопка отправки -->
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </form>
     </div>

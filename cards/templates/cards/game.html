@@ -3,6 +3,7 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
+        <!-- Заголовок и количество вопросов -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="card-title mb-0">
                 <i class="fas fa-gamepad me-2"></i>{{ category.name }}
@@ -12,16 +13,22 @@
             </span>
         </div>
 
+        <!-- Форма с вопросами -->
         <form method="post">
             {% csrf_token %}
+            
+            <!-- Список карточек -->
             <div class="row g-4">
                 {% for card in cards %}
                 <div class="col-12">
                     <div class="card option-card">
                         <div class="card-body">
+                            <!-- Текст вопроса -->
                             <h4 class="card-title mb-3 text-primary">
                                 ❓ {{ card.left_text }}
                             </h4>
+                            
+                            <!-- Выбор ответа -->
                             <select name="card_{{ card.id }}" 
                                     class="form-select form-select-lg"
                                     required>
@@ -38,6 +45,7 @@
                 {% endfor %}
             </div>
 
+            <!-- Кнопка отправки -->
             <div class="text-center mt-5">
                 <button type="submit" class="btn btn-primary btn-lg px-5">
                     <i class="fas fa-check-circle me-2"></i>Проверить ответы

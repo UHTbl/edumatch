@@ -4,11 +4,16 @@
 <div class="col-lg-6 mx-auto">
     <div class="card">
         <div class="card-body">
+            <!-- Заголовок с иконкой -->
             <h3 class="card-title mb-4">
                 <i class="fas fa-folder-plus me-2"></i>Новая категория
             </h3>
+
+            <!-- Форма создания категории -->
             <form method="post">
                 {% csrf_token %}
+                
+                <!-- Поле ввода названия -->
                 <div class="mb-4">
                     <label class="form-label">Название категории</label>
                     <input type="text" 
@@ -17,11 +22,14 @@
                            placeholder="Пример: Английские глаголы"
                            required>
                 </div>
+
+                <!-- Кнопки действий -->
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary btn-lg">
                         <i class="fas fa-save me-2"></i>Создать
                     </button>
-                    <a href="{% url 'categories' %}" class="btn btn-outline-secondary">
+                    <a href="{% url 'categories' %}" 
+                       class="btn btn-outline-secondary">
                         Отмена
                     </a>
                 </div>
